@@ -1,0 +1,21 @@
+<data>
+    <notification_service>
+        <django_cred_token>django-insecure-c%vo$7r9+$(k_y&amp;9ey8gw6xibnrp$5irk4u$bn$lbsl091((#w</django_cred_token>
+        <!-- <mysql_hostname>${MYSQL_HOSTNAME}</mysql_hostname>
+        <mysql_database_name>${MYSQL_DB}</mysql_database_name>
+        <mysql_user>${MYSQL_USER}</mysql_user>
+        <mysql_password>${MYSQL_PASS}</mysql_password>
+        <mysql_port>${PORT}</mysql_port>
+        <mysql_pool>50</mysql_pool> -->
+
+        <!-- Localhost -->
+        <!-- <mysql_hostname>localhost</mysql_hostname>
+        <mysql_database_name>cloud_drive</mysql_database_name>
+        <mysql_user>root</mysql_user>
+        <mysql_password>12345</mysql_password>
+        <mysql_port>3306</mysql_port>
+        <mysql_pool>50</mysql_pool> -->
+        <debug>true</debug>
+        <cors_list>*</cors_list>
+    </notification_service>
+</data>
