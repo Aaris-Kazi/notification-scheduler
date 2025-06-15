@@ -79,7 +79,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'notifyx.wsgi.application'
-ASGI_APPLICATION = 'notifyx.wsgi.application'
+ASGI_APPLICATION = 'notifyx.asgi.application'
 
 
 # Database
