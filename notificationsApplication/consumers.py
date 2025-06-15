@@ -2,15 +2,15 @@ from channels.generic.websocket import AsyncConsumer
 from json import dumps
 
 class NotificationConsumers(AsyncConsumer):
-    user_id = ""
+    username = ""
     group_name = ""
 
     async def connect(self):
         print("connect")
-        self.user_id =  self.scope['url_route']['kwargs']['user_id']
-        self.group_name = f"user_{self.user_id}"
+        self.user_id =  self.scope['url_route']['kwargs']['username']
+        self.group_name = f"user_{self.username}"
 
-        print(self.user_id)
+        print(self.username)
         await self.channel_layer.group_add(self.group_name, self.channel_name)
         await self.accept()
 

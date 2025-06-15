@@ -3,7 +3,7 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 
 @shared_task
-def send_real_time_notification(user_id: str, title: str, body: str):
+def send_real_time_notification(usernmae: str, title: str, body: str):
     channel_layers = get_channel_layer()
 
     message = {
@@ -14,7 +14,7 @@ def send_real_time_notification(user_id: str, title: str, body: str):
     print(message)
 
     async_to_sync(channel_layers.group_send)(
-        f"user_{user_id}",
+        f"user_{usernmae}",
         {
             "type": "send_notification",
             "messsage" : message
