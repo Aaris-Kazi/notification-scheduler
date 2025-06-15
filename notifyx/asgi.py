@@ -12,6 +12,7 @@ import os
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from notificationsApplication.routing import websocket_url
+from channels.auth import AuthMiddlewareStack
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'notifyx.settings')
@@ -20,5 +21,5 @@ application = get_asgi_application()
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": URLRouter(websocket_url)
+    "websocket": AuthMiddlewareStack(URLRouter(websocket_url))
 })
