@@ -1,2 +1,2 @@
 from .consumers import NotificationConsumers
-from . import tasks
+from . import tasks, routing

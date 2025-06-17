@@ -11,15 +11,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-from dotenv import load_dotenv
-
-from config import ConfigReader
+from constants import ConfigConstants
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv()
-configfile = ConfigReader('run/etc.xml')
+
 TAG = "notification_service"
 
 
@@ -27,26 +24,25 @@ TAG = "notification_service"
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = configfile.getProperty(TAG + ".django_cred_token")
+SECRET_KEY = ConfigConstants.SECRET_KEY
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = configfile.getProperty(TAG + ".debug") == "true"
+DEBUG = ConfigConstants.DEBUG
 
-ALLOWED_HOSTS = configfile.getProperty(TAG + ".cors_list").split("\\s*,\\s*")
-
+ALLOWED_HOSTS = ConfigConstants.ALLOWED_HOSTS
 
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
     'healthApp',
     'notificationsApplication'
 ]
@@ -78,8 +74,9 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "notifyx.asgi.application"
 WSGI_APPLICATION = 'notifyx.wsgi.application'
-ASGI_APPLICATION = 'notifyx.asgi.application'
+
 
 
 # Database
@@ -96,13 +93,13 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('192.168.0.111', 6379)],
+            'hosts': [(ConfigConstants.REDIS_HOST, ConfigConstants.REDIS_PORT)],
         },
     },
 }
 
-CELERY_BROKER_URL = 'redis://192.168.0.111:6379/0'
-CELERY_RESULT_BACKEND = 'redis://192.168.0.111:6379/0'
+CELERY_BROKER_URL = f'redis://{ConfigConstants.REDIS_HOST}:{ConfigConstants.REDIS_PORT}/{ConfigConstants.REDIS_DB}'
+CELERY_RESULT_BACKEND = f'redis://{ConfigConstants.REDIS_HOST}:{ConfigConstants.REDIS_PORT}/{ConfigConstants.REDIS_DB}'
 
 
 # Password validation

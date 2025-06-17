@@ -1,4 +1,4 @@
-from channels.generic.websocket import AsyncConsumer
+from channels.generic.websocket import AsyncConsumer, WebsocketConsumer
 from json import dumps
 
 class NotificationConsumers(AsyncConsumer):

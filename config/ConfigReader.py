@@ -1,5 +1,6 @@
 from xml.etree import ElementTree
 
+from loggings.CustomLogging import logger
 
 class ConfigReader:
     _instance = None
@@ -10,6 +11,7 @@ class ConfigReader:
         if not cls._instance:
             cls._instance = super(ConfigReader, cls).__new__(cls)
             cls._instance._initialize(filePath)
+            logger.info("Init Config Reader!")
 
         return cls._instance
     
