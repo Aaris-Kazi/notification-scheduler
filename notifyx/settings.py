@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ConfigConstants.ALLOWED_HOSTS
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'channels',
     'django.contrib.admin',
     'django.contrib.auth',
