@@ -2,7 +2,8 @@ from config import ConfigReader
 from dotenv import load_dotenv
 
 load_dotenv()
-configfile = ConfigReader('src/run/etc.xml')
+# configfile = ConfigReader('src/run/etc.xml')
+configfile = ConfigReader('run/etc.xml')
 TAG = "notification_service"
 
 SECRET_KEY = configfile.getProperty(TAG + ".django_cred_token")

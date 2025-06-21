@@ -14,7 +14,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from notificationsApplication.routing import websocket_urlpatterns
 from channels.auth import AuthMiddlewareStack
-
+from loggings.CustomLogging import logger
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'notifyx.settings')
 
@@ -24,3 +24,5 @@ application = ProtocolTypeRouter({
             AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
         )
 })
+
+logger.info("ASGI init")
