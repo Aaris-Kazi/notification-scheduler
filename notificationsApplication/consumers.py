@@ -33,8 +33,6 @@ class NotificationConsumers(AsyncWebsocketConsumer):
         
 
     async def send_notification(self, event: dict):
-        print("event")
-        print(event['message'])
         await self.send(text_data = dumps(event['message']))
 
 

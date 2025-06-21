@@ -25,7 +25,7 @@ class NotificationViewsets(viewsets.ViewSet):
                 title = serializer.validated_data['title']
                 body = serializer.validated_data['body']
                 data:dict = CommonOperations.getUserDevices(username, deviceType)
-                send_real_time_notification.delay(username, title, body)
+                send_real_time_notification(username, title, body)
                 return JsonResponse({"status": "success"})
             else:
                 return JsonResponse({"status": "failure", "message": serializer.error_messages}, status = status.HTTP_400_BAD_REQUEST)  

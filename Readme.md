@@ -6,5 +6,7 @@
     pip install -r requirements.txt
 
 ## How to run
-     daphne -p 8000 notifyx.asgi:application
+     daphne -p 8008 notifyx.asgi:application
+
+     python manage.py runserver
 
