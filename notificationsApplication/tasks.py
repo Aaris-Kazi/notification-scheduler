@@ -4,13 +4,16 @@ from asgiref.sync import async_to_sync
 from loggings.CustomLogging import logger
 
 @shared_task
-def send_real_time_notification(username: str, title: str, body: str):
+def send_real_time_notification(username: str, title: str, body: str, deviceType: str, deviceId: str, project_name: str):
     logger.info("sending real time notification")
     channel_layers = get_channel_layer()
 
     message = {
         "title": title,
-        "body": body
+        "body": body,
+        "device_type": deviceType,
+        "device_id": deviceId,
+        "project_name": project_name
     }
 
     logger.debug(username)

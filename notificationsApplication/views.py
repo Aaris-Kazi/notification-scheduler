@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.request import Request
 
-from constants.AppConstants import USERNAME, DEVICE_TYPE
+from constants.AppConstants import USERNAME, DEVICE_TYPE, TITLE, BODY, PROJECT_NAME, DEVICE_ID
 from exceptions import ApplicationExceptions, UserDeviceExceptions
 from notificationsApplication.CommonOperations import CommonOperations
 from notificationsApplication.tasks import send_real_time_notification
@@ -22,10 +22,12 @@ class NotificationViewsets(viewsets.ViewSet):
             if serializer.is_valid():
                 username = serializer.validated_data[USERNAME]
                 deviceType = serializer.validated_data[DEVICE_TYPE]
-                title = serializer.validated_data['title']
-                body = serializer.validated_data['body']
-                data:dict = CommonOperations.getUserDevices(username, deviceType)
-                send_real_time_notification(username, title, body)
+                title = serializer.validated_data[TITLE]
+                deviceid = serializer.validated_data[DEVICE_ID]
+                body = serializer.validated_data[BODY]
+                project_name = serializer.validated_data[PROJECT_NAME]
+                _:dict = CommonOperations.getUserDevices(username, deviceType)
+                send_real_time_notification(username, title, body, deviceType, deviceid, project_name)
                 return JsonResponse({"status": "success"})
             else:
                 return JsonResponse({"status": "failure", "message": serializer.error_messages}, status = status.HTTP_400_BAD_REQUEST)  

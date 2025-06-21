@@ -16,6 +16,7 @@ class NotifictionPopUp(serializers.Serializer):
     username = serializers.CharField(max_length=50)
     deviceType = serializers.ChoiceField(choices=DEVICE_TYPE_CHOICES_SERIALIZER)
     deviceid = serializers.CharField(max_length=50)
+    project_name = serializers.CharField(max_length=50)
     title = serializers.CharField(max_length=50, default="test")
     body = serializers.CharField(max_length=200, default="test")
 

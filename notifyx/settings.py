@@ -36,8 +36,11 @@ ALLOWED_HOSTS = ConfigConstants.ALLOWED_HOSTS
 # Application definition
 
 INSTALLED_APPS = [
+    # libraries
     'daphne',
     'channels',
+    'rest_framework',
+    # default django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

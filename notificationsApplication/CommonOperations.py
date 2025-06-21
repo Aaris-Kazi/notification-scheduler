@@ -1,6 +1,6 @@
 from exceptions import ApplicationExceptions, UserDeviceExceptions
 from .models import User_Device
-
+from loggings.CustomLogging import logger
 
 class CommonOperations:
 
@@ -12,9 +12,10 @@ class CommonOperations:
         try:
             User_Device.objects.create(
                 users = username,
-                device_type = device_type
+                device_type = device_type,
             )
         except Exception as e:
+            logger.error(str(e))
             raise Exception
 
     def getUserDevice(username: str) ->dict:

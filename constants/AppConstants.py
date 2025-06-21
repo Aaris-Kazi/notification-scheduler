@@ -15,3 +15,7 @@ USERNAME_LENGTH = 100
 
 USERNAME = "username"
 DEVICE_TYPE = "deviceType"
+DEVICE_ID = "deviceid"
+PROJECT_NAME = "project_name"
+TITLE = "title"
+BODY = "body"
