@@ -1,10 +1,11 @@
 from celery import shared_task
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
+from loggings.CustomLogging import logger
 
 @shared_task
 def send_real_time_notification(username: str, title: str, body: str):
-    print("real time notification")
+    logger.info("sending real time notification")
     channel_layers = get_channel_layer()
 
     message = {
@@ -12,7 +13,9 @@ def send_real_time_notification(username: str, title: str, body: str):
         "body": body
     }
 
-    print(message)
+    logger.debug(username)
+    logger.debug(message)
+    
 
     async_to_sync(channel_layers.group_send)(
         f"user_{username}",
