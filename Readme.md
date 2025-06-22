@@ -1,5 +1,5 @@
 # Notifyx - Notification Scheduler Service
-<img src = https://raw.githubusercontent.com/Aaris-Kazi/notification-scheduler/refs/heads/main/screenshots/brand-hero.png width=1280 height=240>
+<img src = https://raw.githubusercontent.com/Aaris-Kazi/notification-scheduler/refs/heads/main/screenshots/brand-hero.png width=1280 height=300>
 ### Introduction
 Notifyx is a inter-service commuincation application, which allows to make information exchange between the service layers
 
