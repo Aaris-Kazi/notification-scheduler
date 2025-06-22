@@ -8,7 +8,7 @@ from notificationsApplication.CommonOperations import CommonOperations
 from notificationsApplication.tasks import send_real_time_notification
 
 
-from .serializers import NotifictionPopUp, UserDevicesCreate
+from .serializers import NotifictionPopUp, NotifictionPopUpV2, UserDevicesCreate
 
 
 # Create your views here.
@@ -27,6 +27,28 @@ class NotificationViewsets(viewsets.ViewSet):
                 body = serializer.validated_data[BODY]
                 project_name = serializer.validated_data[PROJECT_NAME]
                 _:dict = CommonOperations.getUserDevices(username, deviceType)
+                send_real_time_notification(username, title, body, deviceType, deviceid, project_name)
+                return JsonResponse({"status": "success"})
+            else:
+                return JsonResponse({"status": "failure", "message": serializer.error_messages}, status = status.HTTP_400_BAD_REQUEST)  
+        except UserDeviceExceptions as e:
+            return JsonResponse(status=e.status_code, data={"status": "failure", "message": e.default_detail})
+
+class NotificationViewsetsV2(viewsets.ViewSet):
+    def list(self, request: Request) -> JsonResponse:
+        return JsonResponse({"status": "success"})
+    
+    def create(self, request: Request) -> JsonResponse:
+        try:
+            serializer = NotifictionPopUpV2(data = request.data)
+            if serializer.is_valid():
+                username:str = serializer.validated_data[USERNAME]
+                deviceType: list = serializer.validated_data[DEVICE_TYPE]
+                title:str = serializer.validated_data[TITLE]
+                deviceid:str = serializer.validated_data[DEVICE_ID]
+                body:str = serializer.validated_data[BODY]
+                project_name:str = serializer.validated_data[PROJECT_NAME]
+                _:dict = CommonOperations.getUserDevices(username, deviceType[0])
                 send_real_time_notification(username, title, body, deviceType, deviceid, project_name)
                 return JsonResponse({"status": "success"})
             else:
