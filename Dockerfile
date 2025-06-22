@@ -1,5 +1,5 @@
 # Use an official Python image
-FROM python:3.10
+FROM python:3.11-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -33,4 +33,5 @@ COPY /run/etc.xml /app/run/etc.xml
 EXPOSE 8000
 
 # Start the Gunicorn server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "cloud_drive.wsgi"]
+# CMD ["gunicorn", "--bind", "0.0.0.0:8000", "cloud_drive.wsgi"]
+CMD ["daphne", "-b", "0.0.0.0", "-p", "8000", "notifyx.asgi:application"]
