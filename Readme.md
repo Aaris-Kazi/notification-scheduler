@@ -1,5 +1,6 @@
 # Notifyx - Notification Scheduler Service
-
+### Introduction
+Notifyx is a inter-service commuincation application, which allows to make information exchange between the service layers
 
 
 ## How to install
@@ -7,5 +8,9 @@
 
 ## How to run
 
-     python manage.py runserver
+    python manage.py runserver
 
+## Goal Diggers
+
+- Webhooks  need to implement
+- Need to check how celery can be use for this project
