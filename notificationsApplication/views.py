@@ -48,7 +48,7 @@ class NotificationViewsetsV2(viewsets.ViewSet):
                 deviceid:str = serializer.validated_data[DEVICE_ID]
                 body:str = serializer.validated_data[BODY]
                 project_name:str = serializer.validated_data[PROJECT_NAME]
-                _:dict = CommonOperations.getUserDevices(username, deviceType[0])
+                _:dict = CommonOperations.getUserDevicesV2(username, deviceType)
                 send_real_time_notification(username, title, body, deviceType, deviceid, project_name)
                 return JsonResponse({"status": "success"})
             else:
